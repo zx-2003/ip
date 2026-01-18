@@ -30,7 +30,6 @@ public class Bird {
                 else if (input.startsWith("mark") || input.startsWith("unmark")) {
                     String[] segments = input.split(" ");
                     int index = Integer.parseInt(segments[1]) - 1;
-
                     if (input.startsWith("mark")) {
                         tasks.get(index).markAsDone();
                     } else {
@@ -43,6 +42,23 @@ public class Bird {
                 else if (input.equals("bye")) {
                     System.out.println("Bye. Hope to see you again soon!");
                     running = false;
+                }
+
+                // if the user deletes a task
+                else if (input.startsWith("delete")) {
+                    try {
+                        String segments = input.substring(6).trim();
+                        if (segments.isEmpty()) {
+                            throw new BirdException("Error: you must choose to delete a task");
+                        }
+                        int index = Integer.parseInt(segments) - 1;
+                        Task removedTask = tasks.remove(index);
+                        System.out.println("I've removed this task");
+                        System.out.println(removedTask);
+                        System.out.println("You now have " + tasks.size() + " tasks in the list");
+                    } catch (BirdException e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
 
                 // if the user wants to create a deadline task

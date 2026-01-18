@@ -1,0 +1,11 @@
+todo walk dog
+deadline do project /by Sunday
+event meet friends /from 3pm /to 11pm
+list
+mark 2
+list
+mark 3
+list
+unmark 2
+list
+bye

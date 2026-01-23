@@ -1,5 +1,7 @@
 import java.nio.file.*;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,10 +65,13 @@ public class Storage {
                 task = new ToDos(description);
                 break;
             case "D":
-                task = new Deadline(description, parts[3]);
+                LocalDateTime date = LocalDateTime.parse(parts[3]);
+                task = new Deadline(description, date);
                 break;
             case "E":
-                task = new Events(description, parts[3], parts[4]);
+                LocalDateTime from = LocalDateTime.parse(parts[3]);
+                LocalDateTime to = LocalDateTime.parse(parts[4]);
+                task = new Events(description, from, to);
                 break;
             default:
                 return null;

@@ -28,3 +28,8 @@ expected output
 ## Feature XYZ
 
 // Feature details
+
+## AI usage declaration
+
+// chatGPT was used to explain some of the levels and provide suggestions on implementation such as Level 7 to figure out how to save files locally
+

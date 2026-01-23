@@ -1,3 +1,5 @@
+package bird;
+
 public class Parser {
     protected String input;
 

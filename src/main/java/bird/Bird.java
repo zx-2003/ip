@@ -1,7 +1,7 @@
-import java.time.LocalDateTime;
+package bird;
+
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.time.format.DateTimeFormatter;
 
 public class Bird {
     public static void main(String[] args) {

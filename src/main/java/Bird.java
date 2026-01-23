@@ -2,9 +2,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
 public class Bird {
     public static void main(String[] args) {
@@ -13,23 +11,17 @@ public class Bird {
         Storage storage = new Storage("./data/bird.txt");
         ArrayList<Task> tasks = storage.load();
 
-        System.out.println("____________________________________________");
-        System.out.println("Hello! I'm Bird");
-        System.out.println("What can I do for you?");
-        System.out.println("____________________________________________");
+        Ui userInterface = new Ui();
+        userInterface.welcomeMessage();
 
         while (running) {
             try {
+                userInterface.horizontalLine();
                 String input = scanner.nextLine();
-                System.out.println("____________________________________________");
 
                 // if the user types in list
                 if (input.equals("list")) {
-                    int taskItemNumber = 1;
-                    for (Task t : tasks) {
-                        System.out.println(taskItemNumber + ". " + t);
-                        taskItemNumber = taskItemNumber + 1;
-                    }
+                    userInterface.printTaskList(tasks);
                 }
 
                 // if the user wants to mark a task, probably need exception handling
@@ -38,8 +30,10 @@ public class Bird {
                     int index = Integer.parseInt(segments[1]) - 1;
                     if (input.startsWith("mark")) {
                         tasks.get(index).markAsDone();
+                        userInterface.markTaskAsDone();
                     } else {
                         tasks.get(index).markAsUndone();
+                        userInterface.markTaskAsUndone();
                     }
                     storage.save(tasks);
                     System.out.println(tasks.get(index));
@@ -47,7 +41,7 @@ public class Bird {
 
                 // if the user types in bye
                 else if (input.equals("bye")) {
-                    System.out.println("Bye. Hope to see you again soon!");
+                    userInterface.byeMessage();
                     running = false;
                 }
 
@@ -60,9 +54,9 @@ public class Bird {
                         }
                         int index = Integer.parseInt(segments) - 1;
                         Task removedTask = tasks.remove(index);
-                        System.out.println("I've removed this task");
+                        userInterface.removeTask();
                         System.out.println(removedTask);
-                        System.out.println("You now have " + tasks.size() + " tasks in the list");
+                        userInterface.taskCounter(tasks.size());
                         storage.save(tasks);
                     } catch (BirdException e) {
                         System.out.println(e.getMessage());
@@ -89,7 +83,8 @@ public class Bird {
                             Deadline deadline = new Deadline(segments[0], date);
                             tasks.add(deadline);
                             storage.save(tasks);
-                            System.out.println(deadline + "\n" + "Now you have " + tasks.size() + " tasks in the list");
+                            System.out.println(deadline);
+                            userInterface.taskCounter(tasks.size());
                         } catch (DateTimeParseException e) {
                             throw new BirdException("Error: date must be in yyyy-MM-dd HHmm format");
                         }
@@ -124,7 +119,8 @@ public class Bird {
                             Events event = new Events(segments[0], from, to);
                             tasks.add(event);
                             storage.save(tasks);
-                            System.out.println(event + "\n" + "Now you have " + tasks.size() + " tasks in the list");
+                            System.out.println(event);
+                            userInterface.taskCounter(tasks.size());
                         } catch (DateTimeParseException e) {
                             throw new BirdException("Error: date must be in yyyy-mm-dd HHmm format");
                         }
@@ -144,7 +140,8 @@ public class Bird {
                         ToDos todo = new ToDos(info);
                         tasks.add(todo);
                         storage.save(tasks);
-                        System.out.println(todo + "\n" + "Now you have " + tasks.size() + " tasks in the list");
+                        System.out.println(todo);
+                        userInterface.taskCounter(tasks.size());
                     } catch (BirdException e) {
                         System.out.println(e.getMessage());
                     }
@@ -156,7 +153,7 @@ public class Bird {
             } catch (BirdException e) {
                 System.out.println(e.getMessage());
             }
-            System.out.println("____________________________________________");
+            userInterface.horizontalLine();
         }
     }
 }

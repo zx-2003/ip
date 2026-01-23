@@ -1,7 +1,14 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Ui {
     // this will handle most of the logic for what the user sees
+    public Scanner scanner = new Scanner(System.in);
+
+    public String readInput() {
+        return scanner.nextLine();
+    }
+
     public void welcomeMessage() {
         System.out.println("____________________________________________");
         System.out.println("Hello! I'm Bird");

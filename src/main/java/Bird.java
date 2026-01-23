@@ -5,7 +5,8 @@ public class Bird {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
-        ArrayList<Task> tasks = new ArrayList<>();
+        Storage storage = new Storage("./data/bird.txt");
+        ArrayList<Task> tasks = storage.load();
 
         System.out.println("____________________________________________");
         System.out.println("Hello! I'm Bird");
@@ -35,6 +36,7 @@ public class Bird {
                     } else {
                         tasks.get(index).markAsUndone();
                     }
+                    storage.save(tasks);
                     System.out.println(tasks.get(index));
                 }
 
@@ -56,6 +58,7 @@ public class Bird {
                         System.out.println("I've removed this task");
                         System.out.println(removedTask);
                         System.out.println("You now have " + tasks.size() + " tasks in the list");
+                        storage.save(tasks);
                     } catch (BirdException e) {
                         System.out.println(e.getMessage());
                     }
@@ -71,6 +74,7 @@ public class Bird {
                         String[] segments = info.split(" /by ");
                         Deadline deadline = new Deadline(segments[0], segments[1]);
                         tasks.add(deadline);
+                        storage.save(tasks);
                         System.out.println(deadline + "\n" + "Now you have " + tasks.size() + " tasks in the list");
                     } catch (BirdException e) {
                         System.out.println(e.getMessage());
@@ -86,6 +90,7 @@ public class Bird {
                         }
                         ToDos todo = new ToDos(info);
                         tasks.add(todo);
+                        storage.save(tasks);
                         System.out.println(todo + "\n" + "Now you have " + tasks.size() + " tasks in the list");
                     } catch (BirdException e) {
                         System.out.println(e.getMessage());
@@ -103,6 +108,7 @@ public class Bird {
                         String[] timing = segments[1].split(" /to ");
                         Events event = new Events(segments[0], timing[0], timing[1]);
                         tasks.add(event);
+                        storage.save(tasks);
                         System.out.println(event + "\n" + "Now you have " + tasks.size() + " tasks in the list");
                     } catch (BirdException e) {
                         System.out.println(e.getMessage());

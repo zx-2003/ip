@@ -1,5 +1,5 @@
 public class Task {
-    boolean isDone = false;
+    protected boolean isDone = false;
     protected String description;
 
     public Task(String description) {
@@ -19,6 +19,19 @@ public class Task {
     public void markAsUndone() {
         this.isDone = false;
         System.out.println("OK, I've marked this task as not done yet:");
+    }
+
+    // new function so that we can write to bird.txt
+    public String toFileString() {
+        return "T|" + (this.isDone? "1" : "0") + "|" + this.description;
+    }
+
+    public boolean getIsDone() {
+        return this.isDone;
+    }
+
+    public void setIsDone(boolean done) {
+        this.isDone = done;
     }
 
     @Override

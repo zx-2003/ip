@@ -1,3 +1,5 @@
+package bird;
+
 public class BirdException extends Exception {
 
     public BirdException() {

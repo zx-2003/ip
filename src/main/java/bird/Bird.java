@@ -75,7 +75,7 @@ public class Bird {
                 }
 
                 // if user wants to create a to-do task
-                else if (parser.input.startsWith("todo")) {
+                else if (parser.isToDoTask()) {
                     taskList.addToDoTask(parser.input);
                     storage.save(taskList.tasks);
                     userInterface.taskCounter(taskList.tasks.size());

@@ -1,3 +1,1 @@
-T|0|weoifweofi
-D|0|walk dog|2019-12-12T14:00
-E|0|project meeting|2019-12-12T15:00|2020-11-11T14:00
+E|1|project meeting|2019-12-12T15:00|2020-11-11T14:00

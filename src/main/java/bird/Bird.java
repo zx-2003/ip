@@ -3,6 +3,9 @@ package bird;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * Main entry point for the chatbot.
+ */
 public class Bird {
     public static void main(String[] args) {
         boolean running = true;

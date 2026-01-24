@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * Represents a list of tasks that the user interacts with.
+ */
 public class TaskList {
     protected ArrayList<Task> tasks;
 
@@ -11,6 +14,9 @@ public class TaskList {
         this.tasks = tasks;
     }
 
+    /**
+     * Prints a numbered list of tasks that the user has created.
+     */
     public void printTaskList() {
         int taskItemNumber = 1;
         for (Task t : tasks) {
@@ -19,16 +25,28 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks a task as done when given the task number.
+     * @param taskNo the task number with reference to the task list.
+     */
     public void markTaskAsDone(int taskNo) {
         this.tasks.get(taskNo).markAsDone();
         System.out.println(this.tasks.get(taskNo));
     }
 
+    /**
+     * Marks a task as undone when given the task number.
+     * @param taskNo the task number with reference to the task list.
+     */
     public void markTaskAsUndone(int taskNo) {
         this.tasks.get(taskNo).markAsUndone();
         System.out.println(this.tasks.get(taskNo));
     }
 
+    /**
+     * Deletes a task when given the input delete <taskNo></taskNo>.
+     * @param input delete <taskNo></taskNo>.
+     */
     public void deleteTask(String input) {
         String segments = input.substring(6).trim();
         int index = Integer.parseInt(segments) - 1;
@@ -36,6 +54,11 @@ public class TaskList {
         this.tasks.remove(index);
     }
 
+    /**
+     * adds a deadline task to the task list provided the deadline task is provided in correct format
+     * to the parser.
+     * @param input deadline task (correctly formatted).
+     */
     public void addDeadlineTask(String input) {
         String[] segments = input.substring(8).trim().split(" /by ");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
@@ -45,6 +68,10 @@ public class TaskList {
         System.out.println(deadline);
     }
 
+    /**
+     * adds an event task to the task list provided the event task is provided in correct format to the parser
+     * @param input event task (correctly formatted)
+     */
     public void addEventTask(String input) {
         String[] segments = input.substring(5).trim().split(" /from ");
         String[] timing = segments[1].split(" /to ");
@@ -56,6 +83,10 @@ public class TaskList {
         System.out.println(event);
     }
 
+    /**
+     * adds a todo task to the task list provided the todo task is provided in correct format to the parser
+     * @param input todo task (correctly formatted)
+     */
     public void addToDoTask(String input) {
         String info = input.substring(4).trim();
         ToDos todo = new ToDos(info);

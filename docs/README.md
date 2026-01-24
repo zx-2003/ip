@@ -31,5 +31,5 @@ expected output
 
 ## AI usage declaration
 
-// chatGPT was used to explain some of the levels and provide suggestions on implementation such as Level 7 to figure out how to save files locally
+// chatGPT was used to explain details and concepts on some of the levels and provide suggestions on implementation such as Level 7 to figure out how to save files locally
 

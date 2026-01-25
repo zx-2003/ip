@@ -9,34 +9,38 @@ public class Parser {
 
     /**
      * Checks if the input user gave is "list".
+     *
      * @return true if the user inputs "list" into the parser.
      */
-    public boolean isListCommand() {
+    public boolean checkListCommand() {
         return input.equals("list");
     }
 
     /**
      * Checks if the input user gave is "mark" or "unmark".
+     *
      * @return true if the user inputs "mark" or "unmark" into the parser.
      */
-    public boolean isMarkCommand() {
+    public boolean checkMarkCommand() {
         return input.startsWith("mark") || input.startsWith("unmark");
     }
 
     /**
      * Checks if the input user gave is "bye".
+     *
      * @return true if the user inputs "bye" into the parser.
      */
-    public boolean isByeCommand() {
+    public boolean checkByeCommand() {
         return input.equals("bye");
     }
 
     /**
      * Checks if the input user gave starts with "delete".
+     *
      * @return true if user inputs "delete" into the parser.
      * @throws BirdException if user did not add a task to delete.
      */
-    public boolean isDeleteCommand() throws BirdException {
+    public boolean checkDeleteCommand() throws BirdException {
         if (!input.startsWith("delete")) {
             return false;
         }
@@ -50,11 +54,12 @@ public class Parser {
 
     /**
      * Checks if the input user starts with "deadline" and provides a deadline task.
+     *
      * @return true if user inputs "deadline" into the parser followed by a deadline task,
      * /b <date>yyyy-MM-dd HHmm</date>
      * @throws BirdException if user does not provide task or provides the task in the wrong format.
      */
-    public boolean isDeadlineTask() throws BirdException {
+    public boolean checkDeadlineTask() throws BirdException {
         if (!input.startsWith("deadline")) {
             return false;
         }
@@ -75,11 +80,12 @@ public class Parser {
 
     /**
      * Checks if the input user starts with "event" and provides an event task.
+     *
      * @return true if user inputs "event" into the parser followed by an event task,
-     * /from <date>yyyy-MM-dd HHmm</date>, /to <date>yyyy-MM-dd HHmm</date>
+     * /from <date>yyyy-MM-dd HHmm</date>, /to <date>yyyy-MM-dd HHmm</date>.
      * @throws BirdException if user does not provide task or provides the task in the wrong format.
      */
-    public boolean isEventTask() throws BirdException {
+    public boolean checkEventTask() throws BirdException {
         if (!input.startsWith("event")) {
             return false;
         }
@@ -106,7 +112,7 @@ public class Parser {
      * @return true if user inputs "todo" followed by a todo task.
      * @throws BirdException if user does not provide task.
      */
-    public boolean isToDoTask() throws BirdException {
+    public boolean checkToDoTask() throws BirdException {
         if (!input.startsWith("todo")) {
             return false;
         }

@@ -1,10 +1,17 @@
 package bird;
+
 import java.nio.file.*;
 import java.io.IOException;
+
 import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation for storage class.
+ * Used to cache the list of tasks to populate on startup or exit.
+ */
 public class Storage {
     private final Path filePath;
 
@@ -24,7 +31,7 @@ public class Storage {
             List<String> lines = Files.readAllLines(filePath);
             for (String line: lines) {
                 if (line.isBlank()) continue;
-                Task task = parse(line);
+                Task task = parseTask(line);
                 if (task != null) {
                     tasks.add(task);
                 }
@@ -37,7 +44,7 @@ public class Storage {
     }
 
     // save tasks to the file
-    public void save(ArrayList<Task> tasks) {
+    public void saveTasks(ArrayList<Task> tasks) {
         try {
             Files.createDirectories(filePath.getParent());
             ArrayList<String> lines = new ArrayList<>();
@@ -47,13 +54,14 @@ public class Storage {
 
             Files.write(filePath, lines, StandardOpenOption.CREATE,
                     StandardOpenOption.TRUNCATE_EXISTING);
+
         } catch (IOException e) {
             System.out.println("could not save the tasks");
         }
     }
 
     // converting lines from the file into a task
-    private Task parse(String line) {
+    private Task parseTask(String line) {
         String[] parts = line.split("\\|");
         String type = parts[0];
         boolean done = parts[1].equals("1");
@@ -61,20 +69,20 @@ public class Storage {
 
         Task task;
         switch (type) {
-            case "T":
-                task = new ToDos(description);
-                break;
-            case "D":
-                LocalDateTime date = LocalDateTime.parse(parts[3]);
-                task = new Deadline(description, date);
-                break;
-            case "E":
-                LocalDateTime from = LocalDateTime.parse(parts[3]);
-                LocalDateTime to = LocalDateTime.parse(parts[4]);
-                task = new Events(description, from, to);
-                break;
-            default:
-                return null;
+        case "T":
+            task = new ToDos(description);
+            break;
+        case "D":
+            LocalDateTime date = LocalDateTime.parse(parts[3]);
+            task = new Deadline(description, date);
+            break;
+        case "E":
+            LocalDateTime from = LocalDateTime.parse(parts[3]);
+            LocalDateTime to = LocalDateTime.parse(parts[4]);
+            task = new Events(description, from, to);
+            break;
+        default:
+            return null;
         }
         task.setIsDone(done);
         return task;

@@ -13,6 +13,7 @@ public class Events extends Task {
 
     /**
      * Constructor for the Event task.
+     *
      * @param description a brief explanation of the event.
      * @param from the date and time of the event given in yyyy-MM-dd HHmm format.
      * @param to the date and time of the event given in yyyy-MM-dd HHmm format.
@@ -25,6 +26,7 @@ public class Events extends Task {
 
     /**
      * Provides a string for the event to be cached locally.
+     *
      * @return the String format for the event that is saved in the storage.
      */
     public String toFileString() {

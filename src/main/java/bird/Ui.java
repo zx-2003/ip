@@ -17,6 +17,10 @@ public class Ui {
         System.out.println("____________________________________________");
     }
 
+    public void printMatchingTask() {
+        System.out.println("Here are your matching tasks: ");
+    }
+
     public void printHorizontalLine() {
         System.out.println("____________________________________________");
     }

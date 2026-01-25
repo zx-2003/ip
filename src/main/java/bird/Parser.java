@@ -53,6 +53,24 @@ public class Parser {
     }
 
     /**
+     * Checks if the input user gave starts with "find".
+     *
+     * @return true if user inputs "find" into the parser.
+     * @throws BirdException if user did not add a task to find.
+     */
+    public boolean checkFindCommand() throws BirdException {
+        if (!input.startsWith("find")) {
+            return false;
+        }
+
+        String segments = input.substring(4).trim();
+        if (segments.isEmpty()) {
+            throw new BirdException("Error: you did not enter a task to find");
+        }
+        return true;
+    }
+
+    /**
      * Checks if the input user starts with "deadline" and provides a deadline task.
      *
      * @return true if user inputs "deadline" into the parser followed by a deadline task,
@@ -109,6 +127,7 @@ public class Parser {
 
     /**
      * Checks if user inputs "todo" followed by a todo task.
+     *
      * @return true if user inputs "todo" followed by a todo task.
      * @throws BirdException if user does not provide task.
      */

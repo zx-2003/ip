@@ -25,6 +25,12 @@ public class Bird {
                     taskList.printTaskList();
                 }
 
+                // if user wants to find a task
+                else if (parser.checkFindCommand()) {
+                    userInterface.printMatchingTask();
+                    taskList.findMatchingTask(parser.input);
+                }
+
                 // if user enters mark or unmark
                 else if (parser.checkMarkCommand()) {
                     String[] segments = parser.input.split(" ");

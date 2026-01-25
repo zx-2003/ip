@@ -28,6 +28,22 @@ public class TaskList {
     }
 
     /**
+     * Prints a list of tasks given a keyword as a string.
+     *
+     * @param keyword string that the user provides.
+     */
+    public void findMatchingTask(String keyword) {
+        String key = keyword.substring(4).trim();
+        int taskItemNumber = 1;
+        for (Task t: tasks) {
+            if (t.description.contains(key)) {
+                System.out.println(taskItemNumber + ". " + t);
+                taskItemNumber = taskItemNumber + 1;
+            }
+        }
+    }
+
+    /**
      * Marks a task as done when given the task number.
      *
      * @param taskNo the task number with reference to the task list.

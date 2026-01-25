@@ -1,6 +1,5 @@
 package bird;
 
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 /**
@@ -19,15 +18,15 @@ public class Bird {
 
         while (running) {
             try {
-                userInterface.horizontalLine();
+                userInterface.printHorizontalLine();
                 Parser parser = new Parser(userInterface.readInput());
 
-                if (parser.isListCommand()) {
+                if (parser.checkListCommand()) {
                     taskList.printTaskList();
                 }
 
-                // if the user wants to mark a task, probably need exception handling
-                else if (parser.isMarkCommand()) {
+                // if user enters mark or unmark
+                else if (parser.checkMarkCommand()) {
                     String[] segments = parser.input.split(" ");
                     int index = Integer.parseInt(segments[1]) - 1;
 
@@ -38,49 +37,46 @@ public class Bird {
                         userInterface.markTaskAsUndone();
                         taskList.markTaskAsUndone(index);
                     }
-                    storage.save(taskList.tasks);
+
+                    storage.saveTasks(taskList.tasks);
                 }
 
-                // if the user types in bye
-                else if (parser.isByeCommand()) {
-                    userInterface.byeMessage();
+                // if user enters bye
+                else if (parser.checkByeCommand()) {
+                    userInterface.printByeMessage();
                     running = false;
                 }
 
-                // if the user deletes a task
-                else if (parser.isDeleteCommand()) {
+                // if user enters delete
+                else if (parser.checkDeleteCommand()) {
                     userInterface.removeTask();
                     taskList.deleteTask(parser.input);
+                    storage.saveTasks(taskList.tasks);
+
                     userInterface.taskCounter(taskList.tasks.size());
-                    storage.save(taskList.tasks);
                 }
 
-                // if the user wants to create a deadline task
-                else if (parser.isDeadlineTask()) {
-                    try {
-                        taskList.addDeadlineTask(parser.input);
-                        storage.save(taskList.tasks);
-                        userInterface.taskCounter(taskList.tasks.size());
-                    } catch (DateTimeParseException e) {
-                        throw new BirdException("Error: date must be in yyyy-MM-dd HHmm format");
-                    }
+                // if user enters deadline task
+                else if (parser.checkDeadlineTask()) {
+                    taskList.addDeadlineTask(parser.input);
+                    storage.saveTasks(taskList.tasks);
+
+                    userInterface.taskCounter(taskList.tasks.size());
                 }
 
-                // if the user wants to create an event task
-                else if (parser.isEventTask()) {
-                    try {
-                        taskList.addEventTask(parser.input);
-                        storage.save(taskList.tasks);
-                        userInterface.taskCounter(taskList.tasks.size());
-                    } catch (DateTimeParseException e) {
-                        throw new BirdException("Error: date must be in yyyy-mm-dd HHmm format");
-                    }
+                // if user enters event task
+                else if (parser.checkEventTask()) {
+                    taskList.addEventTask(parser.input);
+                    storage.saveTasks(taskList.tasks);
+
+                    userInterface.taskCounter(taskList.tasks.size());
                 }
 
                 // if user wants to create a to-do task
-                else if (parser.isToDoTask()) {
+                else if (parser.checkToDoTask()) {
                     taskList.addToDoTask(parser.input);
-                    storage.save(taskList.tasks);
+                    storage.saveTasks(taskList.tasks);
+
                     userInterface.taskCounter(taskList.tasks.size());
                 }
 
@@ -91,7 +87,7 @@ public class Bird {
             } catch (BirdException e) {
                 System.out.println(e.getMessage());
             }
-            userInterface.horizontalLine();
+            userInterface.printHorizontalLine();
         }
     }
 }

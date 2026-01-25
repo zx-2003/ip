@@ -9,7 +9,7 @@ public class Task {
         this.isDone = false;
     }
 
-    public String statusIcon() {
+    public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
@@ -26,16 +26,12 @@ public class Task {
         return "T|" + (this.isDone? "1" : "0") + "|" + this.description;
     }
 
-    public boolean getIsDone() {
-        return this.isDone;
-    }
-
     public void setIsDone(boolean done) {
         this.isDone = done;
     }
 
     @Override
     public String toString() {
-        return "[" + this.statusIcon() + "] " + description;
+        return "[" + this.getStatusIcon() + "] " + description;
     }
 }

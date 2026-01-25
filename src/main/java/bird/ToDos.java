@@ -6,8 +6,9 @@ package bird;
 public class ToDos extends Task {
 
     /**
-     * Constructor for the ToDo task
-     * @param description a brief description of the task
+     * Constructor for the ToDo task.
+     *
+     * @param description a brief description of the task.
      */
     public ToDos(String description) {
         super(description);

@@ -1,11 +1,10 @@
 package bird;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
     // this will handle most of the logic for what the user sees
-    public Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     public String readInput() {
         return scanner.nextLine();
@@ -18,11 +17,11 @@ public class Ui {
         System.out.println("____________________________________________");
     }
 
-    public void horizontalLine() {
+    public void printHorizontalLine() {
         System.out.println("____________________________________________");
     }
 
-    public void byeMessage() {
+    public void printByeMessage() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
@@ -40,13 +39,5 @@ public class Ui {
 
     public void taskCounter(int size) {
         System.out.println("You now have " + size + " tasks in the list");
-    }
-
-    public void printTaskList(ArrayList<Task> tasks) {
-        int taskItemNumber = 1;
-        for (Task t : tasks) {
-            System.out.println(taskItemNumber + ". " + t);
-            taskItemNumber = taskItemNumber + 1;
-        }
     }
 }

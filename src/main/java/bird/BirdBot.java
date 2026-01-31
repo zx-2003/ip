@@ -27,6 +27,60 @@ public class BirdBot {
             return "please type something";
         }
 
-        return "Bird heard" + trimmed;
+        try {
+            Parser parser = new Parser(trimmed);
+
+            if (parser.checkListCommand()) {
+                return tasklist.getTaskListString();
+            }
+
+            else if (parser.checkFindCommand()) {
+                return tasklist.findMatchingTask(trimmed);
+            }
+
+            else if (parser.checkMarkCommand()) {
+                String[] segments = parser.input.split(" ");
+                int index = Integer.parseInt(segments[1]) - 1;
+                String msg = tasklist.markTaskAsDone(index);
+                storage.saveTasks(tasklist.tasks);
+                return msg;
+            }
+
+            else if (parser.checkUnmarkCommand()) {
+                String[] segments = parser.input.split(" ");
+                int index = Integer.parseInt(segments[1]) - 1;
+                String msg = tasklist.markTaskAsUndone(index);
+                storage.saveTasks(tasklist.tasks);
+            }
+
+            else if (parser.checkDeleteCommand()) {
+                String msg = tasklist.deleteTask(parser.input);
+                storage.saveTasks(tasklist.tasks);
+                return msg;
+            }
+
+            else if (parser.checkToDoTask()) {
+                String msg = tasklist.addToDoTask(parser.input);
+                storage.saveTasks(tasklist.tasks);
+                return msg;
+            }
+
+            else if (parser.checkEventTask()) {
+                String msg = tasklist.addEventTask(parser.input);
+                storage.saveTasks(tasklist.tasks);
+                return msg;
+            }
+
+            else if (parser.checkDeadlineTask()) {
+                String msg = tasklist.addDeadlineTask(parser.input);
+                storage.saveTasks(tasklist.tasks);
+                return msg;
+            }
+
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+
+        return "Sorry I don't get that";
     }
 }

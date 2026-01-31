@@ -16,31 +16,38 @@ public class TaskList {
         this.tasks = tasks;
     }
 
-    /**
-     * Prints a numbered list of tasks that the user has created.
-     */
     public void printTaskList() {
-        int taskItemNumber = 1;
-        for (Task t : tasks) {
-            System.out.println(taskItemNumber + ". " + t);
-            taskItemNumber = taskItemNumber + 1;
-        }
+        System.out.println(getTaskListString());
     }
 
-    /**
-     * Prints a list of tasks given a keyword as a string.
-     *
-     * @param keyword string that the user provides.
-     */
-    public void findMatchingTask(String keyword) {
-        String key = keyword.substring(4).trim();
+    public String getTaskListString() {
+        if (tasks.isEmpty()) {
+            return "you have no tasks";
+        }
+
+        StringBuilder sb = new StringBuilder();
         int taskItemNumber = 1;
+        for (Task t : tasks) {
+           sb.append(taskItemNumber).append(". ").append(t).append("\n");
+           taskItemNumber = taskItemNumber + 1;
+        }
+        return sb.toString().trim();
+    }
+
+    public String findMatchingTask(String keyword) {
+
+        String key = keyword.substring(4).trim();
+        StringBuilder sb = new StringBuilder();
+        int taskItemNumber = 1;
+
         for (Task t: tasks) {
             if (t.description.contains(key)) {
-                System.out.println(taskItemNumber + ". " + t);
+                sb.append(taskItemNumber).append(". ").append(t).append("\n");
                 taskItemNumber = taskItemNumber + 1;
             }
         }
+
+        return sb.toString().trim();
     }
 
     /**
@@ -48,9 +55,9 @@ public class TaskList {
      *
      * @param taskNo the task number with reference to the task list.
      */
-    public void markTaskAsDone(int taskNo) {
+    public String markTaskAsDone(int taskNo) {
         this.tasks.get(taskNo).markAsDone();
-        System.out.println(this.tasks.get(taskNo));
+        return "Nice, I've marked this task as done \n" + this.tasks.get(taskNo);
     }
 
     /**
@@ -58,9 +65,9 @@ public class TaskList {
      *
      * @param taskNo the task number with reference to the task list.
      */
-    public void markTaskAsUndone(int taskNo) {
+    public String markTaskAsUndone(int taskNo) {
         this.tasks.get(taskNo).markAsUndone();
-        System.out.println(this.tasks.get(taskNo));
+        return "I've marked this task as undone \n" + this.tasks.get(taskNo);
     }
 
     /**
@@ -68,11 +75,12 @@ public class TaskList {
      *
      * @param input delete <taskNo></taskNo>.
      */
-    public void deleteTask(String input) {
+    public String deleteTask(String input) {
         String segments = input.substring(6).trim();
         int index = Integer.parseInt(segments) - 1;
-        System.out.println(this.tasks.get(index));
+        Task task = this.tasks.get(index);
         this.tasks.remove(index);
+        return "Task removed \n" + task;
     }
 
     /**
@@ -80,7 +88,7 @@ public class TaskList {
      *
      * @param input deadline task (correctly formatted).
      */
-    public void addDeadlineTask(String input) throws BirdException {
+    public String addDeadlineTask(String input) throws BirdException {
         try {
             String[] segments = input.substring(8).trim().split(" /by ");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
@@ -88,6 +96,7 @@ public class TaskList {
             Deadline deadline = new Deadline(segments[0], date);
             this.tasks.add(deadline);
             System.out.println(deadline);
+            return deadline.toString();
         } catch (DateTimeParseException e) {
             throw new BirdException("Error: date must be in yyyy-MM-dd HHmm format");
         }
@@ -98,7 +107,7 @@ public class TaskList {
      *
      * @param input event task (correctly formatted).
      */
-    public void addEventTask(String input) throws BirdException {
+    public String addEventTask(String input) throws BirdException {
         try {
             String[] segments = input.substring(5).trim().split(" /from ");
             String[] timing = segments[1].split(" /to ");
@@ -107,21 +116,22 @@ public class TaskList {
             LocalDateTime to = LocalDateTime.parse(timing[1], formatter);
             Events event = new Events(segments[0], from, to);
             this.tasks.add(event);
-            System.out.println(event);
+            return event.toString();
         } catch (DateTimeParseException e) {
             throw new BirdException("Error: date must be in yyyy-MM-dd HHmm format");
         }
     }
+
 
     /**
      * adds a todo task to the task list provided the todo task is provided in correct format to the parser.
      *
      * @param input todo task (correctly formatted).
      */
-    public void addToDoTask(String input) {
+    public String addToDoTask(String input) {
         String info = input.substring(4).trim();
         ToDos todo = new ToDos(info);
         this.tasks.add(todo);
-        System.out.println(todo);
+        return "Todo task added:\n" + todo.toString();
     }
 }

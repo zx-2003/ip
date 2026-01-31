@@ -22,7 +22,11 @@ public class Parser {
      * @return true if the user inputs "mark" or "unmark" into the parser.
      */
     public boolean checkMarkCommand() {
-        return input.startsWith("mark") || input.startsWith("unmark");
+        return input.startsWith("mark");
+    }
+
+    public boolean checkUnmarkCommand() {
+        return input.startsWith("unmark");
     }
 
     /**

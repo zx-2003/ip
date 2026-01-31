@@ -17,6 +17,7 @@ public class Bird {
         userInterface.welcomeMessage();
 
         while (running) {
+
             try {
                 userInterface.printHorizontalLine();
                 Parser parser = new Parser(userInterface.readInput());
@@ -43,7 +44,6 @@ public class Bird {
                         userInterface.markTaskAsUndone();
                         taskList.markTaskAsUndone(index);
                     }
-
                     storage.saveTasks(taskList.tasks);
                 }
 
@@ -86,11 +86,9 @@ public class Bird {
                     userInterface.taskCounter(taskList.tasks.size());
                 }
 
-                else {
-                    throw new BirdException();
-                }
+                else throw new BirdException();
 
-            } catch (BirdException e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
             userInterface.printHorizontalLine();

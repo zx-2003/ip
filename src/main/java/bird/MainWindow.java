@@ -20,10 +20,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Duke duke;
+    private BirdBot bird;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Bird.png"));
+    private Image birdImage = new Image(this.getClass().getResourceAsStream("/images/Bird.png"));
 
     @FXML
     public void initialize() {
@@ -31,8 +31,16 @@ public class MainWindow extends AnchorPane {
     }
 
     /** Injects the Duke instance */
-    public void setDuke(Duke d) {
-        duke = d;
+    //public void setDuke(Duke d) {
+    //    duke = d;
+    //}
+
+    public void setBird(BirdBot b) {
+        bird = b;
+
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(bird.getWelcomeMessage(), birdImage)
+        );
     }
 
     /**
@@ -42,10 +50,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
+        String response = bird.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(response, birdImage)
         );
         userInput.clear();
     }

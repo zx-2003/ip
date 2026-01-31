@@ -13,7 +13,8 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Duke duke = new Duke();
+    // private Duke duke = new Duke();
+    private BirdBot birdBot = new BirdBot();
 
     @Override
     public void start(Stage stage) {
@@ -22,7 +23,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(duke);  // inject the Duke instance
+            fxmlLoader.<MainWindow>getController().setBird(birdBot);  // inject the Bird instance
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

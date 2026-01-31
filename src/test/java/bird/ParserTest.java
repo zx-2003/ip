@@ -9,6 +9,6 @@ public class ParserTest {
     // inserting todo task with no argument, returns an error
     public void parserTest1() {
         Parser parser = new Parser("todo");
-        assertThrows(BirdException.class, () -> parser.isToDoTask());
+        assertThrows(BirdException.class, () -> parser.checkToDoTask());
     }
 }

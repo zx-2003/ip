@@ -45,7 +45,7 @@ test {
 application {
     // for now change this to the launcher to run that
     // mainClass.set("bird.Bird")
-    mainClass.set("Launcher");
+    mainClass.set("bird.Launcher");
 }
 
 shadowJar {

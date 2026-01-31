@@ -1,3 +1,5 @@
+package bird;
+
 import javafx.application.Application;
 
 /**

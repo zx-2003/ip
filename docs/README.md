@@ -32,4 +32,5 @@ expected output
 ## AI usage declaration
 
 // chatGPT was used to explain details and concepts on some of the levels and provide suggestions on implementation such as Level 7 to figure out how to save files locally.
+// In addition it was used to explain how to integrate my CLI to GUI and provided explanation when I was unsure how to integrate certain features
 

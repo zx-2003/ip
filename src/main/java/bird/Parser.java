@@ -144,7 +144,6 @@ public class Parser {
         if (info.isEmpty()) {
             throw new BirdException("Error: todo task must have a description");
         }
-
         return true;
     }
 }

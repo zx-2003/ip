@@ -56,6 +56,11 @@ public class TaskList {
      * @param taskNo the task number with reference to the task list.
      */
     public String markTaskAsDone(int taskNo) {
+        // test assertion
+        assert taskNo > 0 && tasks.size() > taskNo : "taskNo out of bounds";
+        if (taskNo > tasks.size()) {
+            return "task is out of bounds for the number of tasks you have";
+        }
         this.tasks.get(taskNo).markAsDone();
         return "Nice, I've marked this task as done \n" + this.tasks.get(taskNo);
     }

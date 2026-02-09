@@ -51,6 +51,7 @@ public class BirdBot {
                 int index = Integer.parseInt(segments[1]) - 1;
                 String msg = tasklist.markTaskAsUndone(index);
                 storage.saveTasks(tasklist.tasks);
+                return msg;
             }
 
             else if (parser.checkDeleteCommand()) {

@@ -16,10 +16,6 @@ public class TaskList {
         this.tasks = tasks;
     }
 
-    public void printTaskList() {
-        System.out.println(getTaskListString());
-    }
-
     public String getTaskListString() {
         if (tasks.isEmpty()) {
             return "you have no tasks";
@@ -83,6 +79,7 @@ public class TaskList {
     public String deleteTask(String input) {
         String segments = input.substring(6).trim();
         int index = Integer.parseInt(segments) - 1;
+
         Task task = this.tasks.get(index);
         this.tasks.remove(index);
         return "Task removed \n" + task;
@@ -96,11 +93,13 @@ public class TaskList {
     public String addDeadlineTask(String input) throws BirdException {
         try {
             String[] segments = input.substring(8).trim().split(" /by ");
+
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
             LocalDateTime date = LocalDateTime.parse(segments[1], formatter);
+
             Deadline deadline = new Deadline(segments[0], date);
             this.tasks.add(deadline);
-            System.out.println(deadline);
+
             return deadline.toString();
         } catch (DateTimeParseException e) {
             throw new BirdException("Error: date must be in yyyy-MM-dd HHmm format");
@@ -116,11 +115,15 @@ public class TaskList {
         try {
             String[] segments = input.substring(5).trim().split(" /from ");
             String[] timing = segments[1].split(" /to ");
+
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+
             LocalDateTime from = LocalDateTime.parse(timing[0], formatter);
             LocalDateTime to = LocalDateTime.parse(timing[1], formatter);
+
             Events event = new Events(segments[0], from, to);
             this.tasks.add(event);
+
             return event.toString();
         } catch (DateTimeParseException e) {
             throw new BirdException("Error: date must be in yyyy-MM-dd HHmm format");
@@ -136,6 +139,7 @@ public class TaskList {
     public String addToDoTask(String input) {
         String info = input.substring(4).trim();
         ToDos todo = new ToDos(info);
+
         this.tasks.add(todo);
         return "Todo task added:\n" + todo.toString();
     }

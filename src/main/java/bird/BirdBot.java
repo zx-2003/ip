@@ -78,6 +78,10 @@ public class BirdBot {
                 return msg;
             }
 
+            else if (parser.checkDueSoon()) {
+                return tasklist.findDueTasks();
+            }
+
         } catch (Exception e) {
             return e.getMessage();
         }

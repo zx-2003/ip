@@ -15,6 +15,11 @@ public class ToDos extends Task {
     }
 
     @Override
+    public boolean isDueSoon() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }

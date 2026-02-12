@@ -30,6 +30,10 @@ public class Task {
         this.isDone = done;
     }
 
+    public boolean isDueSoon() {
+        return false;
+    }
+
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + description;

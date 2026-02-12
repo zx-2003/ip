@@ -1,7 +1,9 @@
 package bird;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents a deadline task.
@@ -36,5 +38,14 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " +
                 date.format(DateTimeFormatter.ofPattern("MMM d yyyy, h:mma")) + ")";
+    }
+
+    @Override
+    public boolean isDueSoon() {
+        LocalDate today = LocalDate.now();
+        LocalDate deadlineDate = this.date.toLocalDate();
+
+        long daysDifference = ChronoUnit.DAYS.between(today, deadlineDate);
+        return daysDifference >= 0 && daysDifference <= 7;
     }
 }

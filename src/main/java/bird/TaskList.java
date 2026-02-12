@@ -46,6 +46,22 @@ public class TaskList {
         return sb.toString().trim();
     }
 
+    public String findDueTasks() {
+        StringBuilder sb = new StringBuilder();
+        int taskItemNumber = 1;
+
+        sb.append("Here are the tasks that are due soon (within 7 days): ").append("\n");
+
+        for (Task t: tasks) {
+            if (t.isDueSoon()) {
+                sb.append(taskItemNumber).append(". ").append(t).append("\n");
+                taskItemNumber = taskItemNumber + 1;
+            }
+        }
+
+        return sb.toString().trim();
+    }
+
     /**
      * Marks a task as done when given the task number.
      *

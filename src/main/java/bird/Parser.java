@@ -146,4 +146,8 @@ public class Parser {
         }
         return true;
     }
+
+    public boolean checkDueSoon() {
+        return input.startsWith("due");
+    }
 }

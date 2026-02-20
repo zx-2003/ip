@@ -10,7 +10,7 @@ In addition, you can see which tasks are due
 
 - list
 
-Generates the list of tasks
+Generates the list of tasks.
 
 ```
 Example: list
@@ -19,7 +19,7 @@ Example: list
 
 - find
 
-Generates the list of tasks that matches the keyword the user has given
+Generates the list of tasks that matches the keyword the user has given.
 
 ```
 Example: find walk
@@ -28,7 +28,7 @@ Example: find walk
 
 - mark
 
-Marks the task given as done. The input should be an index with respect to the task list
+Marks the task given as done. The input should be an index with respect to the task list.
 
 ```
 Example: mark 2
@@ -37,7 +37,7 @@ Example: mark 2
 
 - unmark
 
-Unmark the given task. The input should be an index with respect to the task list
+Unmark the given task. The input should be an index with respect to the task list.
 
 ```
 Example: unmark 2
@@ -46,7 +46,7 @@ Example: unmark 2
 
 - delete
 
-Delete the given task. The input should be an index with respect to the task list
+Delete the given task. The input should be an index with respect to the task list.
 
 ```
 Example: delete 2
@@ -55,7 +55,7 @@ Example: delete 2
 
 - todo
 
-Add a todo task. The task description should be provided after the todo keyword
+Add a todo task. The task description should be provided after the todo keyword.
 
 ```
 Example: todo walk dog
@@ -77,7 +77,10 @@ Add a deadline task. The format should be `deadline <desc> /by yyyy-MM-dd HHmm`
 Example: deadline watch lecture /by 2022-12-06 1700
 ```
 
+- due
 
-## Feature XYZ
+See what tasks are due within the next week.
 
-// Feature details
+```
+Example: due
+```

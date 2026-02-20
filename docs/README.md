@@ -11,7 +11,7 @@ In addition, you can see which tasks are due
 
 ## Commands
 
-list
+- list
 
 Generates the list of tasks
 

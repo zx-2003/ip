@@ -30,21 +30,16 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Duke instance */
-    //public void setDuke(Duke d) {
-    //    duke = d;
-    //}
-
     public void setBird(BirdBot b) {
         bird = b;
 
         dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog(bird.getWelcomeMessage(), birdImage)
+                DialogBox.getBirdDialog(bird.getWelcomeMessage(), birdImage)
         );
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * Creates two dialog boxes, one echoing user input and the other containing Bird's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     @FXML
@@ -53,7 +48,7 @@ public class MainWindow extends AnchorPane {
         String response = bird.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, birdImage)
+                DialogBox.getBirdDialog(response, birdImage)
         );
         userInput.clear();
     }

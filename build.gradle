@@ -43,13 +43,11 @@ test {
 }
 
 application {
-    // for now change this to the launcher to run that
-    // mainClass.set("bird.Bird")
     mainClass.set("bird.Launcher");
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "birdBot"
     archiveClassifier = null
 }
 

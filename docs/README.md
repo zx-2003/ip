@@ -3,7 +3,7 @@
 ![Product Screenshot](Ui.png)
 
 Bird is a task managing chatbot for your daily needs, you can create tasks, mark them and delete them as well.
-In addition, you can see which tasks are due
+In addition, you can see which tasks are due.
 
 
 ## Commands

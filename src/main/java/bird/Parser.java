@@ -29,14 +29,6 @@ public class Parser {
         return input.startsWith("unmark");
     }
 
-    /**
-     * Checks if the input user gave is "bye".
-     *
-     * @return true if the user inputs "bye" into the parser.
-     */
-    public boolean checkByeCommand() {
-        return input.equals("bye");
-    }
 
     /**
      * Checks if the input user gave starts with "delete".

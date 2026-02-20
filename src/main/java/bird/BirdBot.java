@@ -6,6 +6,9 @@ public class BirdBot {
     private final Storage storage;
     private final TaskList tasklist;
 
+    /**
+     * Creates the setup for bird bot.
+     */
     public BirdBot() {
         this.storage = new Storage("./data/bird.txt");
         ArrayList<Task> tasks = storage.load();
@@ -13,10 +16,21 @@ public class BirdBot {
         this.tasklist = taskList;
     }
 
+    /**
+     * Returns a simple welcome message.
+     *
+     * @return a welcome String.
+     */
     public String getWelcomeMessage() {
         return "Hello this is bird.";
     }
 
+    /**
+     * Receives input from the user.
+     *
+     * @param input : string that user passes in when they type into the chatbot.
+     * @return Output depending on what the user types in.
+     */
     public String getResponse(String input) {
         if (input == null) {
             return "please type something in";

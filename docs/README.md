@@ -10,7 +10,7 @@ In addition, you can see which tasks are due
 
 - list
 
-Generates the list of tasks.
+Generates the list of tasks the user currently has.
 
 ```
 Example: list

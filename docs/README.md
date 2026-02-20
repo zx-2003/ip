@@ -5,6 +5,11 @@
 Bird is a task managing chatbot for your daily needs, you can create tasks, mark them and delete them as well.
 In addition, you can see which tasks are due.
 
+# Getting started
+
+Requirements: You need to have Java 17 and above
+You can download the Bird jar from here [Download Bird.jar](birdBot.jar)
+
 
 ## Commands
 

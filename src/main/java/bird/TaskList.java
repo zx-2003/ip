@@ -73,6 +73,11 @@ public class TaskList {
         if (taskNo > tasks.size()) {
             return "task is out of bounds for the number of tasks you have";
         }
+
+        if (taskNo < 0 || taskNo > tasks.size() - 1) {
+            return "invalid task number";
+        }
+
         this.tasks.get(taskNo).markAsDone();
         return "Nice, I've marked this task as done \n" + this.tasks.get(taskNo);
     }
@@ -83,6 +88,10 @@ public class TaskList {
      * @param taskNo the task number with reference to the task list.
      */
     public String markTaskAsUndone(int taskNo) {
+        if (taskNo < 0 || taskNo > tasks.size() - 1) {
+            return "invalid task number";
+        }
+
         this.tasks.get(taskNo).markAsUndone();
         return "I've marked this task as undone \n" + this.tasks.get(taskNo);
     }
@@ -95,6 +104,10 @@ public class TaskList {
     public String deleteTask(String input) {
         String segments = input.substring(6).trim();
         int index = Integer.parseInt(segments) - 1;
+
+        if (index < 0 || index > tasks.size() - 1) {
+            return "invalid task number";
+        }
 
         Task task = this.tasks.get(index);
         this.tasks.remove(index);

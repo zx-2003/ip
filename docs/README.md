@@ -7,7 +7,7 @@ In addition, you can see which tasks are due.
 
 # Getting started
 
-Requirements: You need to have Java 17 and above 
+Requirements: You need to have Java 17.
 You can download the Bird jar from here [Download Bird.jar](birdBot.jar)
 
 
